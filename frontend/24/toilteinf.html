@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>厕所信息</title>
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="./css/x-admin.css" media="all" />
+    <style type="text/css">
+        .open{
+            border:1px solid #ccc;
+            padding: 0 3px 0 3px;
+            cursor: pointer;
+        }
+    </style>
+    <link rel="stylesheet" href="layui\css\layui.css">
+    <style> .layui-form-label {
+        width: 150px !important;
+        text-align: center !important;
+    }
+
+    .layui-input-block {
+        margin-left: 150px !important;
+    }
+    body{background:url(images/toilet.jpeg);background-size:cover;overflow:hidden}
+</style>
+</head>
+<body>
+
+<div class="x-nav">
+    <span class="layui-breadcrumb"> <a><cite>首页</cite></a> <a><cite>厕所</cite></a> <a><cite>厕所信息</cite></a> </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a>
+    
+</div>
+<div class="x-body">
+    <form class="layui-form x-center" action="" style="width:500px">
+       
+   <table id="demo" lay-filter="test"></table>
+   <script src="layui/layui.js"></script>
+    <script>
+        layui.use('table', function(){
+          var table = layui.table;
+        
+          //第一个实例
+          table.render({
+            elem: '#demo'
+            ,width:600
+            ,height:500
+            ,url: 'http://192.168.50.65:8000/get_toilet/' //数据接口
+            ,cols: [[ //表头
+              {field: 'toiletid', title: '厕所ID', width:150, sort: true, fixed: 'left'}
+              ,{field: 'peoplenum', title: '使用者数量', width:150}
+              ,{field: 'toiletloc', title: '位置', width:150, sort: true}
+              ,{field: 'toiletclean', title: '清理状态', width:150}
+              
+            ]]
+        
+          });
+        
+        });
+    </script>
+    <div id="page"></div>
+    </form>
+
+
+</div>
+
+<script>
+
+    //此函数只向后端传递表单内容,将闸门状态改为false
+    function saves(frm){
+        var jsonObject=new Object();
+            jsonObject.toiletid=frm.lakeid.value;
+            // jsonObject.lakename=frm.name.value;
+            // jsonObject.lakesize='5000';
+            // jsonObject.lakeloc='西一区';
+            // jsonObject.waterlevel='12';
+            // jsonObject.gatestate='false';
+
+            var stringData=JSON.stringify(jsonObject);
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+             xhr.addEventListener("readystatechange", function() {
+                if(this.readyState === 4) {
+                       console.log(this.responseText);
+                       alert(this.responseText);
+                }
+           });
+           xhr.open("POST", "http://192.168.50.65:8000/wcclean/");
+           xhr.send(stringData);
+           alert("已成功安排工作人员清理厕所！");
+          
+    }
+    function yijian(){
+            alert("hh，懒鬼");
+            var jsonObject=new Object();
+
+            var stringData=JSON.stringify(jsonObject);
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+            xhr.addEventListener("readystatechange", function() {
+                if(this.readyState === 4) {
+                       alert(this.responseText);
+                }
+           });
+           xhr.open("GET", "http://192.168.50.65:8000/wcclean/");
+           xhr.send();
+           
+
+  }
+
+    
+</script>
+</body>
+</html>

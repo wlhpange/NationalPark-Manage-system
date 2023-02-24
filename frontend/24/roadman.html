@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>道路管理</title>
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="./css/x-admin.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_3372454_27mp59jqcbr.css">
+    <style type="text/css">
+        .open{
+            border:1px solid #ccc;
+            padding: 0 3px 0 3px;
+            cursor: pointer;
+        }
+    </style>
+    <link rel="stylesheet" href="layui\css\layui.css">
+    <style> .layui-form-label {
+        width: 150px !important;
+        text-align: center !important;
+    }
+
+    .layui-input-block {
+        margin-left: 150px !important;
+    }
+    body{background:url(images/road.jpg);background-size:cover;overflow:hidden}
+</style>
+</head>
+<body>
+
+<div class="x-nav">
+    <span class="layui-breadcrumb"> <a><cite>首页</cite></a> <a><cite>道路</cite></a> <a><cite>道路管理</cite></a> </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a>
+
+</div>
+<div class="x-body">
+    <form class="layui-form x-center" action="" style="width:800px">
+        <div class="layui-form-pane" style="margin-top: 15px;">
+            <div class="layui-form-item">
+                <label class="layui-form-label" >修补道路ID</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input"  id="lakeid" name="lakeid">
+                </div>
+                <div class="layui-input-inline" style="width:80px">
+                    <button class="layui-btn"  lay-submit="" lay-filter="sreach" onclick="saves(this.form)"><i class="iconfont">&#xe61f;</i></button>
+                </div>
+                <div class="layui-input-inline" style="width:80px">
+                    <button value="一键除虫" class="layui-btn"  lay-submit="" lay-filter="sreach" onclick="yijian()">太累了，一键修补&nbsp;<i class="iconfont">&#xe61f;</i></button>
+                </div>
+            </div>
+            <div><table id="demo" lay-filter="test"></table></div>
+        </div>
+    </form>
+
+
+
+<script src="layui/layui.js"></script>
+    <script>
+        layui.use('table', function(){
+          var table = layui.table;
+        
+          //第一个实例
+          table.render({
+            elem: '#demo'
+            ,height:500
+            ,url: 'http://192.168.50.65:8000/get_road/' //数据接口
+            ,cols: [[ //表头
+            {field: 'roadid', title: 'ID', width:200, sort: true, fixed: 'left'}
+           ,{field: 'roadlength', title: '路长', width:200}
+           ,{field: 'roadname', title: '路名', width:200, sort: true}
+           ,{field: 'potholesnum', title: '坑洼数量', width:200}
+           ]]
+        
+          });
+        
+        });
+    </script>
+    <div id="page"></div>
+</div>
+
+<script>
+
+    //此函数只向后端传递表单内容,将闸门状态改为false
+    function saves(frm){
+        var jsonObject=new Object();
+            jsonObject.roadid=frm.lakeid.value;
+            
+
+            var stringData=JSON.stringify(jsonObject);
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+             xhr.addEventListener("readystatechange", function() {
+                if(this.readyState === 4) {
+                       console.log(this.responseText);
+                       alert(this.responseText);
+                }
+           });
+           xhr.open("POST", "http://192.168.50.65:8000/roadmain/");
+           xhr.send(stringData);
+           alert("您已成功开放闸门！");
+          
+    }
+</script>
+<script>
+
+    //此函数只向后端传递表单内容,将闸门状态改为false
+    function yijian(){
+            alert("hh");
+            
+            
+            var stringData=JSON.stringify(jsonObject);
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+            xhr.addEventListener("readystatechange", function() {
+                if(this.readyState === 4) {
+                       alert(this.responseText);
+                }
+           });
+           xhr.open("GET", "http://192.168.50.65:8000/roadmain/");
+           xhr.send();
+           
+
+  }
+</script>
+</body>
+</html>

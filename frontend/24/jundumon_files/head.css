@@ -1,0 +1,149 @@
+﻿*{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+
+a{
+	color: #333;
+	text-decoration: none;
+}
+.clear{
+	clear: both;
+}
+.nav{
+	/*width: 100%;*/
+	height: 90px;
+	line-height: 90px;
+	background-color: #f7f2f0;
+	border: 1px solid #ccc;
+}
+.nav .nav_logo,.nav_list{
+	float: left;
+	width: 38%;
+	height: 90px;
+}
+.nav_list{
+	padding:0px 0px 0px 4%;
+}
+.nav_list a{
+	color: #333;
+}
+.nav .nav_logo img{
+   padding-top: 15px;
+   padding-left: 300px;
+}
+.nav .nav_list ul li{
+	float: left;
+	width: 14%;
+	height:90px;
+	line-height: 90px;
+	text-align: center;
+	font-size: 14px;
+	cursor: pointer;}
+.nav .nav_list .select1,.select2,.select3{
+	position: relative;
+}
+.nav .nav_list .select1 .limg1{
+	display: none;
+	position: absolute;
+	bottom: 0;
+	padding-left: 7px;
+}
+.nav .nav_list .select2 .limg2{
+	display: none;
+	position: absolute;
+	bottom: 0;
+	padding-left: 3px;
+}
+.nav .nav_list .select3 .limg3{
+	display: none;
+	position: absolute;
+	bottom: 0;
+	padding-left: 3px;
+}
+.nav .nav_list ul img{
+	float: right;
+	padding-top: 25px;
+}
+.nav .language{
+	float: right;
+	width: 200px;
+	height: 90px;
+	margin-right: 50px;
+}
+.nav .language img{
+	padding-top: 7px;
+}
+.nav .language select{
+	float: right;
+	width: 91px;
+	height: 29px;
+	margin-top: 30px;
+
+	line-height: 29px;
+	outline: none;
+	background-color: #f7f2f0;
+}
+/*二级菜单*/
+.nav .nav_2{
+   display: none;
+   position: absolute;
+   right: -100px;
+   width: 570px;
+   height: 192px;
+   background-color: rgba(243,238,242,.9);
+   z-index: 100;
+}
+.nav .nav_3{
+	display: none;
+	position: absolute;
+	right: -100px;
+	width: 570px;
+	height: 192px;
+	background-color: rgba(243,238,242,.9);
+	z-index: 100;
+}
+.nav .nav_3 .navLeft{
+	width: 190px;
+	padding: 20px 50px;
+}
+.nav .nav_3 .navLeft ul li{
+	width: 190px;
+	height: 40px;
+	line-height: 40px;
+	text-align: left;
+	border-bottom: 1px dashed #eee;
+}
+.nav .nav_3 .navLeft ul li span{
+	padding-right: 20px;
+}
+.nav .nav_3 .navRight img{
+	padding:18px 0px;
+}
+.nav .nav_3 .navLeft,.navRight{float: left;color: #333}
+.nav .nav_2 .navLeft,.navRight{float: left;color: #333}
+.nav .nav_2 .navLeft{
+	width: 190px;
+	padding: 20px 50px;
+}
+.nav .nav_2 .navLeft ul li{
+	width: 190px;
+	height: 40px;
+	line-height: 40px;
+	text-align: left;
+	border-bottom: 1px dashed #eee;
+}
+.nav .nav_2 .navLeft a{
+	color: #333;
+}
+.nav .nav_2 .navLeft ul li span{
+	padding-right: 20px;
+}
+.nav .nav_2 .navRight img{
+	padding:18px 0px;
+}
+.show{
+	display: block;
+}

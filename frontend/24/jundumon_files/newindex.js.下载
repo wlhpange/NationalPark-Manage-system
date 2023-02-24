@@ -1,0 +1,193 @@
+﻿$(function(){
+	  // 轮播1
+    certifySwiper = new Swiper('#certify .swiper-container', {
+    watchSlidesProgress: true,
+    slidesPerView: 'auto',
+    centeredSlides: true,
+    loop: true,
+    loopedSlides: 5,
+    autoplay: true,
+    navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+    },
+    })
+    // 公园信息切换
+    $('.inforleft ul li').hover(function() {
+         var i = $(this).index();
+         $(this).find(".aa").addClass('hidden');
+         $(this).find(".bb").removeClass('hidden');
+         $(this).siblings('li').find(".aa").removeClass('hidden');
+         $(this).siblings('li').find(".bb").addClass('hidden');
+         $('.inforRight ul li').eq(i).fadeIn(0).siblings().fadeOut(0);
+    });
+    $(".title_one").click(function () {
+      $(this).addClass("current").siblings().removeClass("current");
+      $(".body_one .content_one").eq($(this).index()).css('z-index', '100').siblings().css('z-index', '90');
+      $('.list_one').fadeOut(0);
+      $(".body_one .content_one").eq($(this).index()).find('.list_one').fadeIn(0);
+      $(".more_one").eq($(this).index()).addClass('more_two').siblings().removeClass('more_two');
+    });
+    // 内容1的字体放大效果
+    $(".nr").hover(function(){
+        $(this).addClass('blue');
+    },function(){
+        $(this).removeClass('blue');
+    });
+       $(".nr_two").hover(function(){
+        $(this).addClass('blue');
+    },function(){
+        $(this).removeClass('blue');
+    });
+       // $(".se_gengduo img").hover(function() {
+
+       //   $(this).css('transform', 'rotate(-360deg)');
+       // }, function() {
+       //   $(this).css('transform', 'rotate(0deg)');
+
+       //   /* Stuff to do when the mouse leaves the element */
+       // });
+       // $(".se_gengduo img").mouseenter(function(){
+       //      $(this).css('transform', 'rotate(-720deg)');
+       // })
+})
+    // 轮播1
+    window.onload = function(){
+        // 图片轮播
+        var mySwiper1 = new Swiper('#swiper_1',{
+        pagination:{
+            el:'.pagination_1',
+            clickable: true,
+        },
+        loop:true,
+        autoplay:{
+            delay: 3000,
+            stopOnLastSlide: false,
+            disableOnInteraction: false,
+
+        },
+    });
+    // 轮播2
+    var mySwiper2 = new Swiper('#swiper_2',{
+        pagination:{
+            el:'.pagination_2',
+            clickable: true,
+        },
+        initialSlide:1,
+        loop:true,
+        autoplay:{
+            delay: 3000,
+            stopOnLastSlide: false,
+            disableOnInteraction: false,
+
+        },
+        observer:true,//修改swiper自己或子元素时，自动初始化swiper
+        observeParents:true//修改swiper的父元素时，自动初始化swiper
+
+    });
+     $('#swiper_1 .swiper-slide').mouseenter(function () {
+         mySwiper1.autoplay.stop();
+      })
+      $('#swiper_1 .swiper-slide').mouseleave(function () {
+         mySwiper1.autoplay.start();
+      })
+      $('#swiper_2 .swiper-slide').mouseenter(function () {
+         mySwiper2.autoplay.stop();
+      })
+      $('#swiper_2 .swiper-slide').mouseleave(function () {
+         mySwiper2.autoplay.start();
+      })
+    // 轮播3  天坛美图
+    var swiper = new Swiper('.se_three .swiper-container', {
+        autoplay: {
+          disableOnInteraction: false,
+          delay: 1000,
+        },
+        slidesPerView: 4,
+        spaceBetween: 30,
+        slidesPerGroup: 1,
+        loop: true,
+        loopFillGroupWithBlank: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.se_three .swiper-button-next',
+          prevEl: '.se_three .swiper-button-prev',
+        },
+    });
+      $('.se_three .swiper-slide').mouseenter(function () {
+         swiper.autoplay.stop();
+      })
+      $('.se_three .swiper-slide').mouseleave(function () {
+         swiper.autoplay.start();
+      })
+    // 轮播4 时间轴
+    var swiper1 = new Swiper('.se_two .swiper-container', {
+      slidesPerView: 4,
+      spaceBetween: 30,
+      slidesPerGroup: 1,
+      loopFillGroupWithBlank: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.se_two .swiper-button-next',
+        prevEl: '.se_two .swiper-button-prev',
+      },
+    });
+
+    // 右侧导航栏返回最顶部的动画效果
+    $(".nav_top").click(function () {
+        $('body,html').animate({ scrollTop: 0 }, 800);
+    });
+    // 右侧导航栏最底部的文字
+    $(".nav_bot").click(function () {
+       if (!$(this).hasClass('nav_bot')) {
+          $(this).addClass('nav_bot');
+          $('.nav_hide').slideDown(300);
+          $(this).text('')
+      } else {
+          $('.nav_hide').slideUp(300);
+          $(this).removeClass('nav_bot');
+          $(this).text('导');
+      }
+    });
+    //右侧导航栏悬停效果
+    $(".nav_hide").hover(function(){
+        $(this).find(".navCon").fadeIn(0);
+    },function(){
+        $(this).find(".navCon").fadeOut(0);
+    })
+    //点击导航图微信分享的点击事件
+    $(".share_wx").click(function () {
+        $('.share_wx_content').show();
+    });
+    //点击导航图微信分享的关闭事件
+    $(".share_close").click(function () {
+        $('.share_wx_content').hide();
+    });
+   $(".share_piao").click(function () {	
+        $('.share_piao_content').show();
+    });
+    //点击导航图微信分享的关闭事件
+    $(".share_piao_close").click(function () {
+        $('.share_piao_content').hide();
+    });
+    $(document).scroll(function(){   //页面加载时，获取滚动条初始高度
+      　var distance = $(document).scrollTop();  //获取滚动条初始高度的值 ：0
+      // 　console.log(distance); //打印滚动条不同高度的位置的值
+        if(distance > 1500) {  //当滚动条高度为0时
+          　$('#nav').fadeIn();
+        } else {
+        　　$('#nav').fadeOut();
+        }
+    })
+    $('.se_one .se0_second .se0_con .img').hover(function(){
+      $(this).animate({marginTop:"10px"}).animate({marginTop:"0px"});
+    },function(){
+      $(this).animate({marginTop:"0px"});
+    })
+  }

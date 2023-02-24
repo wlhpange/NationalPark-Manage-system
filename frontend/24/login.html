@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>游客预约</title>
+    <link rel="stylesheet" href="css/login.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script src="./lib/layui/layui.js" charset="utf-8"></script>
+
+</head>
+
+<body class="login-bg">
+    <div id="toutou">
+        <a href="login2.html">我是管理员</a>
+        <a href="login3.html">我是检测员</a>
+    </div>
+
+    <div class="login">
+        <div class="message">游客预约</div>
+        <div id="darkbannerwrap"></div>
+
+        <form method="post" class="layui-form-item">
+            <input name="vname" placeholder="姓名" type="text" lay-verify="required" class="layui-input">
+            <hr class="hr15">
+            <input name="vtel" lay-verify="required" placeholder="电话号码" type="text" class="layui-input">
+            <hr class="hr15">
+            <select name="vtime1" lay-verify="required" placeholder="预约时间">
+                <option value="">请选择预约时间</option>
+                <option value="0513">5月13号</option>
+                <option value="0514">5月14号</option>
+                <option value="0515">5月15号</option>
+                <option value="0516">5月16号</option>
+                <option value="0517">5月17号</option>
+                <option value="0518">5月18号</option>
+                <option value="0519">5月19号</option>
+                <option value="0520">5月20号</option>
+                <option value="0521">5月21号</option>
+                <option value="0522">5月22号</option>
+                <option value="0523">5月23号</option>
+                <option value="0524">5月24号</option>
+                <option value="0525">5月25号</option>
+                <option value="0526">5月26号</option>
+                <option value="0527">5月27号</option>
+                <option value="0528">5月28号</option>
+                <option value="0529">5月29号</option>
+                <option value="0530">5月30号</option>
+            </select>
+            <hr class="hr15">
+            <input value="提交预约" lay-submit lay-filter="login" style="width:100%;" type="button"
+                onclick="savevisitor(this.form)">
+            <hr class="hr20">
+        </form>
+
+    </div>
+    <script>
+        function savevisitor(frm) {
+            if (frm.vtel.value.length != 11) {
+                alert("电话号码格式不正确！");
+                location.reload();
+            } else if (isNaN(frm.vtel.value)) {
+                alert("电话号码必须是数字!")
+                location.reload();
+            }
+
+            var jsonObject = new Object();
+            jsonObject.vname = frm.vname.value;
+            jsonObject.vtel = frm.vtel.value;
+            jsonObject.vtime = frm.vtime1.value;
+
+            var stringData = JSON.stringify(jsonObject);
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === 4) {
+                    console.log(this.responseText);
+                    if (this.responseText == "nodate") {
+                        alert("该日期暂时不提供预约！");
+                        location.reload();
+                    } else if (this.responseText == 'Full') {
+                        alert("该日期预约人数已满！");
+                        location.reload();
+                    } else if (this.responseText == 'yeah') {
+                        alert("预约成功!");
+                        location.href = "./home.html";
+                    }
+                }
+            });
+            xhr.open("POST", "http://192.168.50.65:8000/appointment/");
+            xhr.send(stringData);
+
+        }
+    </script>
+
+
+
+    <!-- 底部结束 -->
+
+</body>
+
+</html>

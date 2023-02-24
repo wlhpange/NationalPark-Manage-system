@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static%}
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>table模块快速使用</title>
+
+  <link rel="stylesheet" href="{% static 'layui/css/layui.css'%} ">
+
+</head>
+<body>
+<table id="demo" lay-filter="test"></table>
+
+<script src={% static "layui/layui.js"%}></script>
+
+<script>
+layui.use('table', function(){
+  var table = layui.table;
+
+  //第一个实例
+  table.render({
+    elem: '#demo'
+    ,height: 312
+    ,method:"get"
+    ,url: 'http://192.168.50.65:8000/get_data/' //数据接口
+    ,page: true //开启分页
+    ,cols: [[ //表头
+      {field: 'roadid', title: 'ID', width:80, sort: true, fixed: 'left'}
+      ,{field: 'roadlength', title: '路长', width:80}
+      ,{field: 'roadname', title: '路名', width:80, sort: true}
+      ,{field: 'potholesunm', title: '坑洼数量', width:80}
+    ]]
+
+  });
+
+});
+</script>
+</body>
+</html>

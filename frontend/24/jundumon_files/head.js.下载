@@ -1,0 +1,32 @@
+﻿ $(function(){
+// 二级菜单切换
+	// alert('ok');
+	$('.select1').hover(function() {
+		$('.limg1').fadeIn(0);
+		$('.select1 .nav_2').fadeIn(0);
+	}, function() {
+		$('.limg1').fadeOut(0);
+		$('.select1 .nav_2').fadeOut(0);
+	});
+	$('.select2').hover(function() {
+		$('.limg2').fadeIn(0);
+		$('.select2 .nav_2').fadeIn(0);
+	}, function() {
+		$('.limg2').fadeOut(0);
+		$('.select2 .nav_2').fadeOut(0);
+	});
+        $('.select3').hover(function() {
+		$('.limg3').fadeIn(0);
+		$('.select3 .nav_3').fadeIn(0);
+	}, function() {
+		$('.limg3').fadeOut(0);
+		$('.select3 .nav_3').fadeOut(0);
+	});
+
+	$('.nav_list ul li').hover(function() {
+		$(this).find('a').css('color', '#0663B1');
+		$('.navLeft ul li').find('a').css('color','#333');
+	},function(){
+		$(this).find('a').css('color','#333');
+	})
+})

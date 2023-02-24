@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>游客预约</title>
+    {% load staticfiles%}
+  <link rel="stylesheet" href="{% static 'css/login.css'%} ">
+  <script type="text/javascript" src="{% static 'js/jquery.min.js'%} "></script>
+  <script src={% static "layui/layui.js"%} charset="utf-8"></script>
+</head>
+<body class="login-bg">
+    <div class="login">
+        <div class="message">游客预约</div>
+        <div id="darkbannerwrap"></div>
+        <form method="post" class="layui-form" >
+            <input name="vname" placeholder="姓名"  type="text" lay-verify="required" class="layui-input" >
+            <hr class="hr15">
+            <input name="vtel" lay-verify="required" placeholder="电话号码"  type="text" class="layui-input">
+            <hr class="hr15">
+            <input name="vtime" placeholder="预约时间" type="text" lay-verify="required" class="layui-input">
+            <input value="提交预约" lay-submit lay-filter="login" style="width:100%;" type="button" onclick="savevisitor(this.form)" >
+            <hr class="hr20" >
+        </form>
+    </div>
+    <script>
+        function savevisitor(frm){
+
+            var jsonObject=new Object();
+            jsonObject.vname=frm.vname.value;
+            jsonObject.vtel=frm.vtel.value;
+            jsonObject.vtime=frm.vtime.value;
+            jsonObject.vsex='true';
+            jsonObject.vage='12';
+
+            var stringData=JSON.stringify(jsonObject);
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+
+            xhr.addEventListener("readystatechange", function() {
+                if(this.readyState === 4) {
+                       console.log(this.responseText);
+                }
+           });
+
+           xhr.open("POST", "http://192.168.50.65:8000/appointment/");
+           xhr.send(stringData);
+           alert("您已成功预约！");
+
+        }
+
+
+    </script>
+
+
+    <!-- 底部结束 -->
+
+</body>
+</html>
