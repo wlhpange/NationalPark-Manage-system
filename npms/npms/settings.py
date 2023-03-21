@@ -92,12 +92,16 @@ WSGI_APPLICATION = 'npms.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'sql_server.pyodbc',
         'NAME': 'NPMSDB',
-        'USER': 'postgres',
-        'PASSWORD': '123',
         'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'PORT': '1433',
+        'USER': 'sa',
+        'PASSWORD': '12345oOo',
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',
+            'MARS_Connection': True,
+        },
     }
 }
 
